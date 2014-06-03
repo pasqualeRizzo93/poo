@@ -47,10 +47,10 @@ public abstract class VectorAstratto<T> implements Vector<T> {
 	}// T remove
 
 	public void clear() {
-		Iterator<T> it=iterator();
-		while(it.hasNext()){
-			T current=it.next();
-			current=null;
+		Iterator<T> it = iterator();
+		while (it.hasNext()) {
+			T current = it.next();
+			current = null;
 		}
 	}// clear
 
@@ -82,13 +82,13 @@ public abstract class VectorAstratto<T> implements Vector<T> {
 		return !iterator().hasNext();
 	}// isEmpty
 
-	public void add(int indice, T elem){
+	public void add(int indice, T elem) {
 		Iterator<T> it = iterator();
-		int c= 0;
-		while(it.hasNext() && c< indice){
-			T current = it.next();
+		int c = 0;
+		while (it.hasNext() && c < indice) {
+			it.next();
 			c++;
-			if(c== indice){
+			if (c == indice) {
 				add(elem);
 			}
 		}
