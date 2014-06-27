@@ -62,7 +62,6 @@ public class ListaConcatenata<T extends Comparable> extends ListaAstratta<T> {
     @Override
     public void sort(Comparator<T> c) {
 	Nodo<T> n1, n2, tmp = new Nodo<T>();
-	ListIterator<T> lit = this.listIterator();
 	for (n1 = testa; n1.next != null; n1 = n1.next) {
 	    boolean scambi = false;
 	    for (n2 = testa; n2.next != null; n2 = n2.next) {
