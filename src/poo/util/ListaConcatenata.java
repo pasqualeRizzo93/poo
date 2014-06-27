@@ -2,7 +2,7 @@ package poo.util;
 
 import java.util.*;
 
-public class ListaConcatenata<T> extends ListaAstratta<T> {
+public class ListaConcatenata<T extends Comparable> extends ListaAstratta<T> {
 
     private static class Nodo<E> {
 	E info;
@@ -25,14 +25,7 @@ public class ListaConcatenata<T> extends ListaAstratta<T> {
 	testa = nuovo;
 	if (coda == null)
 	    coda = nuovo;
-	// ti eri scordato il piu importante. sotto commentato vedi quello che
-	// avevi scritto tu
-
-	// Nodo<T> nuovo = new Nodo<T>();
-	// nuovo.info = elem;
-	// nuovo.next = testa;
-	// nuovo.prior = null;
-    }// addFirst ??
+    }// addFirst 
 
     public void addLast(T elem) {
 
@@ -44,15 +37,23 @@ public class ListaConcatenata<T> extends ListaAstratta<T> {
 	coda = nuovo;
 	if (testa == null)
 	    testa = nuovo;
-	// non ho capito cosa avevi fatto. sotto commentato vedi quello che
-	// avevi scritto tu
-	// Nodo<T> nuovo = new Nodo<T>();
-	// Nodo<T> current = testa.next;
-	// nuovo.info = elem;
-	// nuovo.next = null;
-	// nuovo.prior = current;
-
-    }// addLast ??
+    }// addLast 
+    
+    @Override
+    public void sort(Comparator<T> c){
+    	Nodo<T>n1,n2,tmp=null;
+    	ListIterator<T> lit= this.listIterator();
+    	for(n1=testa;n1.next!=null;n1=n1.next){
+    		boolean scambi=false;
+    		for(n2=testa;n2.next!=null;n2=n2.next){
+    			if(c.compare(n2.info,n2.next.info)>0){
+    				tmp.info=n2.info;n2.info=n2.next.info;n2.next.info=tmp.info;
+    				scambi=true;
+    			}
+    		}
+    		if(!scambi)break;
+    	}
+    }
 
     @Override
     public ListIterator<T> listIterator() {
@@ -132,7 +133,7 @@ public class ListaConcatenata<T> extends ListaAstratta<T> {
 	public void add(T elem) {
 	    if (cur == null) {
 		addFirst(elem);
-		cur = testa;// ?non sono sicuro
+		cur = testa;
 	    } else {
 		Nodo<T> nuovo = new Nodo<T>();
 		nuovo.info = elem;
@@ -151,7 +152,6 @@ public class ListaConcatenata<T> extends ListaAstratta<T> {
 		removeLast();
 	    } else {
 		cur.prior.next = cur.next;
-		// ovviamente mancava l'altro puntatore
 		cur.next.prior = cur.prior;
 		indice--;
 	    }
@@ -166,11 +166,11 @@ public class ListaConcatenata<T> extends ListaAstratta<T> {
 
 	public int nextIndex() {
 	    return indice + 1;
-	}// nextIndex()
+	}// nextIndex
 
 	public int previousIndex() {
 	    return indice - 1;
 	}// previousIndex
-    }// IteratoreDiLista ???????
+    }// IteratoreDiLista
 
 }// ListaConcatenata
