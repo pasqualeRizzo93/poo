@@ -23,32 +23,35 @@ public class ListaConcatenata<T> extends ListaAstratta<T> {
 	nuovo.next = testa;
 	nuovo.prior = null;
 	testa = nuovo;
-	if(coda == null) coda = nuovo;
-	// ti eri scordato il piu importante. sotto commentato vedi quello che avevi scritto tu
-	
-//	Nodo<T> nuovo = new Nodo<T>();
-//	nuovo.info = elem;
-//	nuovo.next = testa;
-//	nuovo.prior = null;
+	if (coda == null)
+	    coda = nuovo;
+	// ti eri scordato il piu importante. sotto commentato vedi quello che
+	// avevi scritto tu
+
+	// Nodo<T> nuovo = new Nodo<T>();
+	// nuovo.info = elem;
+	// nuovo.next = testa;
+	// nuovo.prior = null;
     }// addFirst ??
 
     public void addLast(T elem) {
-	
-	
+
 	Nodo<T> nuovo = new Nodo<T>();
 	nuovo.info = elem;
 	nuovo.next = null;
 	coda.next = nuovo;
 	nuovo.prior = coda;
 	coda = nuovo;
-	if(testa == null) testa = nuovo;
-	// non ho capito cosa avevi fatto. sotto commentato vedi quello che avevi scritto tu
-//	Nodo<T> nuovo = new Nodo<T>();
-//	Nodo<T> current = testa.next;
-//	nuovo.info = elem;
-//	nuovo.next = null;
-//	nuovo.prior = current;
-	
+	if (testa == null)
+	    testa = nuovo;
+	// non ho capito cosa avevi fatto. sotto commentato vedi quello che
+	// avevi scritto tu
+	// Nodo<T> nuovo = new Nodo<T>();
+	// Nodo<T> current = testa.next;
+	// nuovo.info = elem;
+	// nuovo.next = null;
+	// nuovo.prior = current;
+
     }// addLast ??
 
     @Override
@@ -104,7 +107,8 @@ public class ListaConcatenata<T> extends ListaAstratta<T> {
 		cur = testa;
 	    else
 		cur = cur.next;
-	    if (verso != 1) verso = 1;
+	    if (verso != 1)
+		verso = 1;
 	    indice++;
 	    return cur.info;
 	}// next
@@ -161,11 +165,11 @@ public class ListaConcatenata<T> extends ListaAstratta<T> {
 	}// set
 
 	public int nextIndex() {
-	     return indice + 1;
+	    return indice + 1;
 	}// nextIndex()
 
 	public int previousIndex() {
-	    return indice -1 ;
+	    return indice - 1;
 	}// previousIndex
     }// IteratoreDiLista ???????
 
