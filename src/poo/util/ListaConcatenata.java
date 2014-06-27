@@ -25,7 +25,7 @@ public class ListaConcatenata<T extends Comparable> extends ListaAstratta<T> {
 	testa = nuovo;
 	if (coda == null)
 	    coda = nuovo;
-    }// addFirst 
+    }// addFirst
 
     public void addLast(T elem) {
 
@@ -37,22 +37,45 @@ public class ListaConcatenata<T extends Comparable> extends ListaAstratta<T> {
 	coda = nuovo;
 	if (testa == null)
 	    testa = nuovo;
-    }// addLast 
+    }// addLast
+
+//    @Override
+//    public void sort(Comparator<T> c) {
+//	Nodo<T> n1, n2, tmp = null;
+//	ListIterator<T> lit = this.listIterator();
+//	for (n1 = testa; n1.next != null; n1 = n1.next) {
+//	    boolean scambi = false;
+//	    for (n2 = testa; n2.next != null; n2 = n2.next) {
+//		if (c.compare(n2.info, n2.next.info) > 0) {
+//		    tmp.info = n2.info;
+//		    n2.info = n2.next.info;
+//		    n2.next.info = tmp.info;
+//		    scambi = true;
+//		}
+//	    }
+//	    if (!scambi)
+//		break;
+//	}
+//    }
+    
     
     @Override
-    public void sort(Comparator<T> c){
-    	Nodo<T>n1,n2,tmp=null;
-    	ListIterator<T> lit= this.listIterator();
-    	for(n1=testa;n1.next!=null;n1=n1.next){
-    		boolean scambi=false;
-    		for(n2=testa;n2.next!=null;n2=n2.next){
-    			if(c.compare(n2.info,n2.next.info)>0){
-    				tmp.info=n2.info;n2.info=n2.next.info;n2.next.info=tmp.info;
-    				scambi=true;
-    			}
-    		}
-    		if(!scambi)break;
-    	}
+    public void sort(Comparator<T> c) {
+	Nodo<T> n1, n2, tmp = new Nodo<T>();
+	ListIterator<T> lit = this.listIterator();
+	for (n1 = testa; n1.next != null; n1 = n1.next) {
+	    boolean scambi = false;
+	    for (n2 = testa; n2.next != null; n2 = n2.next) {
+		if (c.compare(n2.info, n2.next.info) > 0) {
+		    tmp.info = n2.info;
+		    n2.info = n2.next.info;
+		    n2.next.info = tmp.info;
+		    scambi = true;
+		}
+	    }
+	    if (!scambi)
+		break;
+	}
     }
 
     @Override
