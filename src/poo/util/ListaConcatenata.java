@@ -22,14 +22,33 @@ public class ListaConcatenata<T> extends ListaAstratta<T> {
 	nuovo.info = elem;
 	nuovo.next = testa;
 	nuovo.prior = null;
+	testa = nuovo;
+	if(coda == null) coda = nuovo;
+	// ti eri scordato il piu importante. sotto commentato vedi quello che avevi scritto tu
+	
+//	Nodo<T> nuovo = new Nodo<T>();
+//	nuovo.info = elem;
+//	nuovo.next = testa;
+//	nuovo.prior = null;
     }// addFirst ??
 
     public void addLast(T elem) {
+	
+	
 	Nodo<T> nuovo = new Nodo<T>();
-	Nodo<T> current = testa.next;
 	nuovo.info = elem;
 	nuovo.next = null;
-	nuovo.prior = current;
+	coda.next = nuovo;
+	nuovo.prior = coda;
+	coda = nuovo;
+	if(testa == null) testa = nuovo;
+	// non ho capito cosa avevi fatto. sotto commentato vedi quello che avevi scritto tu
+//	Nodo<T> nuovo = new Nodo<T>();
+//	Nodo<T> current = testa.next;
+//	nuovo.info = elem;
+//	nuovo.next = null;
+//	nuovo.prior = current;
+	
     }// addLast ??
 
     @Override
@@ -44,12 +63,18 @@ public class ListaConcatenata<T> extends ListaAstratta<T> {
 
     private class IteratoreDiLista implements ListIterator<T> {
 	private Nodo<T> cur, pre, suc;
+	private int verso; // 1 verso positivo in avanti , -1 verso negativo
+			   // torno indietro
 	private boolean rimuovibile = false;
+	// ti serve ovviamente mantenere un indici
+	private int indice;
 
 	public IteratoreDiLista() {
 	    cur = null;
 	    pre = null;
 	    suc = null;
+	    verso = 1;
+	    indice = 0;
 	}// costruttore
 
 	public IteratoreDiLista(int start) {
@@ -79,6 +104,8 @@ public class ListaConcatenata<T> extends ListaAstratta<T> {
 		cur = testa;
 	    else
 		cur = cur.next;
+	    if (verso != 1) verso = 1;
+	    indice++;
 	    return cur.info;
 	}// next
 
@@ -92,6 +119,9 @@ public class ListaConcatenata<T> extends ListaAstratta<T> {
 	    rimuovibile = true;
 	    suc = cur;
 	    cur = cur.prior;
+	    if (verso != -1)
+		verso = -1;
+	    indice--;
 	    return cur.info;
 	}// previous
 
@@ -117,8 +147,10 @@ public class ListaConcatenata<T> extends ListaAstratta<T> {
 		removeLast();
 	    } else {
 		cur.prior.next = cur.next;
-
-	    }// non penso sia completo
+		// ovviamente mancava l'altro puntatore
+		cur.next.prior = cur.prior;
+		indice--;
+	    }
 	}// remove
 
 	public void set(T elem) {
@@ -129,11 +161,11 @@ public class ListaConcatenata<T> extends ListaAstratta<T> {
 	}// set
 
 	public int nextIndex() {
-	    return -1;// non so bene come muovermi
+	     return indice + 1;
 	}// nextIndex()
 
 	public int previousIndex() {
-	    return -1;// non so bene come muovermi
+	    return indice -1 ;
 	}// previousIndex
     }// IteratoreDiLista ???????
 
