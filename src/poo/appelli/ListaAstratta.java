@@ -2,7 +2,7 @@ package poo.appelli;
 
 import java.util.*;
 
-public abstract class ListaAstratta<NominativoS> implements Lista<NominativoS> {
+public abstract class ListaAstratta<T extends NominativoS> implements Lista<NominativoS> {
 	private int size;
 
 	@Override
@@ -60,8 +60,8 @@ public abstract class ListaAstratta<NominativoS> implements Lista<NominativoS> {
 		NominativoS tmp = null;
 		while (lit.hasNext()) {
 			tmp = lit.next();
-			if (tmp.getCodice() == codice)
-				return tmp;
+			if(tmp.getCodice() == codice)
+			    return tmp;
 		}
 		return null;
 	}// cerca(codice)
