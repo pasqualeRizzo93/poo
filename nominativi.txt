@@ -1,0 +1,6 @@
+PERSONA=Mario Rossi CODICE=1
+PERSONA=Paolo Maldini CODICE=2
+PERSONA=Paolo Bonaiuti CODICE=3
+PERSONA=Carlo Conti CODICE=4
+PERSONA=Valeria Marini CODICE=5
+PERSONA=Vanna Marchi CODICE=6
