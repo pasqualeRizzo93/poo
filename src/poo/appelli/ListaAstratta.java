@@ -2,7 +2,7 @@ package poo.appelli;
 
 import java.util.*;
 
-public abstract class ListaAstratta<T extends NominativoS> implements Lista<NominativoS> {
+public abstract class ListaAstratta<T> implements Lista<NominativoS> {
 	private int size;
 
 	@Override
