@@ -60,8 +60,8 @@ public abstract class ListaAstratta<T> implements Lista<NominativoS> {
 		NominativoS tmp = null;
 		while (lit.hasNext()) {
 			tmp = lit.next();
-			if (tmp.getCodice() == codice)
-				return tmp;
+			if(tmp.getCodice() == codice)
+			    return tmp;
 		}
 		return null;
 	}// cerca(codice)
