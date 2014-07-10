@@ -24,7 +24,7 @@ private int size;
 	public void add(NominativoS n) {
 		Nodo<NominativoS> nuovo = new Nodo<NominativoS>();
 		nuovo.info = n;
-		nuovo.next = testa;
+		if(testa!=null )nuovo.next = testa;
 		testa = nuovo;
 		size++;
 	}// add
@@ -74,22 +74,24 @@ private int size;
 		private Nodo<NominativoS> cur;
 
 		public MioIteratore() {
-			cur = null;
+//			cur = null;
+		    cur = testa;
 		}// costruttore
 
 		public boolean hasNext() {
 			if (cur == null)
-				return testa != null;
-			return cur.next != null;
+				return false;
+			return cur != null;
 		}// hasNext
 
 		public NominativoS next() {
 			if (!hasNext())
 				throw new NoSuchElementException();
-			if (cur == null)
-				cur = testa;
+//			if (cur == null)
+//				cur = testa;
+			NominativoS info = cur.info;
 			cur = cur.next;
-			return cur.info;
+			return info;
 		}
 
 		public void remove() {
