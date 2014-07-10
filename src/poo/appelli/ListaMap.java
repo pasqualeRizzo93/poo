@@ -4,17 +4,18 @@ import java.util.*;
 
 public class ListaMap<T> extends ListaAstratta<T> {
 	private Map<NominativoS, NominativoS> map = new HashMap<NominativoS, NominativoS>();
-	private int size;
+//	private int size;
+	//non serve lo hai gia
 
 	@Override
 	public int size() {
-		return size;
+		return map.size();
 	}// size
 
 	@Override
 	public void add(NominativoS n) {
 		map.put(n, n);
-		size++;
+//		size++;
 	}// add
 
 	@Override
