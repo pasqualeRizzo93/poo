@@ -49,6 +49,6 @@ public final class NominativoS implements Comparable<NominativoS> {
 	}// hashCode
 
 	public String toString() {
-		return cognome + " " + nome;
+		return "PERSONA="+nome + " " + cognome + " "+"CODICE="+codice;
 	}// toString
 }// Nominativo

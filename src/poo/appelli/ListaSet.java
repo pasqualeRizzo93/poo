@@ -5,18 +5,19 @@ import java.util.*;
 
 public class ListaSet<T> extends ListaAstratta<T> {
 	private Set<NominativoS> lst = new HashSet<NominativoS>();
-	private int size;
+//	private int size;
+	//non serve lo hai gia
 
 	@Override
 	public int size() {
-		return size;
+		return lst.size();
 	}
 
 	@Override
 	public void add(NominativoS n) {
 		if (cerca(n) == null) {
 			lst.add(n);
-			size++;
+//			size++;
 		}
 		lst.remove(n);
 		lst.add(n);
