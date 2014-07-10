@@ -2,11 +2,8 @@ package poo.appelli;
 
 import java.util.*;
 
-
 public class ListaSet<T> extends ListaAstratta<T> {
 	private Set<NominativoS> lst = new HashSet<NominativoS>();
-//	private int size;
-	//non serve lo hai gia
 
 	@Override
 	public int size() {
@@ -17,7 +14,6 @@ public class ListaSet<T> extends ListaAstratta<T> {
 	public void add(NominativoS n) {
 		if (cerca(n) == null) {
 			lst.add(n);
-//			size++;
 		}
 		lst.remove(n);
 		lst.add(n);
