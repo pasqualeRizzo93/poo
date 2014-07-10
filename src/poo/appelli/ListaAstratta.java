@@ -1,5 +1,6 @@
 package poo.appelli;
 
+import java.io.*;
 import java.util.*;
 
 public abstract class ListaAstratta<T> implements Lista<NominativoS> {
@@ -60,8 +61,8 @@ public abstract class ListaAstratta<T> implements Lista<NominativoS> {
 		NominativoS tmp = null;
 		while (lit.hasNext()) {
 			tmp = lit.next();
-			if(tmp.getCodice() == codice)
-			    return tmp;
+			if (tmp.getCodice() == codice)
+				return tmp;
 		}
 		return null;
 	}// cerca(codice)
@@ -130,4 +131,44 @@ public abstract class ListaAstratta<T> implements Lista<NominativoS> {
 		sb.append(']');
 		return sb.toString();
 	}// toString
+
+	public void ripristina(String nomeFile) throws IOException {
+		BufferedReader br = new BufferedReader(new FileReader(nomeFile));
+		String linea = null;
+		StringTokenizer st = null;
+		LinkedList<NominativoS> tmp = new LinkedList<NominativoS>();
+		boolean okLettura = true;
+		for (;;) {
+			linea = br.readLine();
+			if (linea == null)
+				break;
+			st = new StringTokenizer(linea, "= ");
+			try {
+				String nome = st.nextToken();
+				String cognome = st.nextToken();
+				int codice = Integer.parseInt(st.nextToken());
+				tmp.add(new NominativoS(nome, cognome, codice));
+			} catch (Exception e) {
+				okLettura = false;
+				System.out.println("File inconsistente!");
+				break;
+
+			}
+		}
+		br.close();
+		if (okLettura) {
+			this.clear();
+			for (NominativoS n : tmp)
+				this.add(n);
+		} else
+			throw new IOException();
+	}// ripristina
+
+	public void salva(String nomeFile) throws IOException {
+		PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(
+				nomeFile)));
+		for (NominativoS n : this)
+			pw.println(n);
+		pw.close();
+	}// salva
 }// ListaAstratta
