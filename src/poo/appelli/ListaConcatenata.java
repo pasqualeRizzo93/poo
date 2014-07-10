@@ -3,6 +3,7 @@ package poo.appelli;
 import java.util.*;
 
 public class ListaConcatenata<T> extends ListaAstratta<T> {
+private int size;
 
 	private static class Nodo<E> {
 		E info;
@@ -16,11 +17,16 @@ public class ListaConcatenata<T> extends ListaAstratta<T> {
 	}// costruttore
 
 	@Override
+	public int size() {
+		return size;
+	}
+	@Override
 	public void add(NominativoS n) {
 		Nodo<NominativoS> nuovo = new Nodo<NominativoS>();
 		nuovo.info = n;
 		nuovo.next = testa;
 		testa = nuovo;
+		size++;
 	}// add
 
 	@Override
