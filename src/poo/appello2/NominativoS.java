@@ -1,4 +1,4 @@
-package poo.appelli;
+package poo.appello2;
 
 public final class NominativoS implements Comparable<NominativoS> {
 	private String nome,cognome;

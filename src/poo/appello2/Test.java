@@ -1,7 +1,7 @@
 /**
  * 
  */
-package poo.appelli;
+package poo.appello2;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -61,6 +61,7 @@ public class Test {
 		System.out.println("riordino la lista");
 		lista.sort();
 		System.out.println("fatto !");
+
 	    } else if (comando.equals(STAMPA)) {
 		System.out.print("[");
 		for (NominativoS nominativoS : lista) {
