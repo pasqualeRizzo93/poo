@@ -1,29 +1,36 @@
 package poo.appello1;
 
 import java.util.*;
-import java.io.*;
 
-public interface Rete<Connessione> extends Iterable<Connessione> {
-	int size();
+public interface Rete<String> extends Iterable<String> {
+	int numNodi();
 
-	Connessione remove(Connessione c);
+	int numConnessioni();
+
+	boolean esisteNodo(String u);
+
+	boolean esisteConnessione(Connessione c);
+
+	boolean esisteConnessione(String u, String v, String z, int l);
+
+	void insNodo(String u);
+
+	void insConnessione(Connessione c);
+
+	void insConnessione(String u, String v, String z, int l);
+
+	void rimuoviNodo(String u);
+
+	void rimuoviConnessione(Connessione c);
+
+	void rimuoviConnessione(String u, String v, String z, int l);
+
+	int gradoEntrata(String u);
+
+	int gradoUscita(String u);
+
+	Iterator<? extends Connessione> adiacenti(String u);
 
 	void clear();
-
-	Connessione cerca(Connessione c);
-
-	boolean isEmpty();
-
-	boolean isFull();
-
-	Iterator<Connessione> iterator();
-
-	void add(Connessione c);
-
-	int lunghezzaPercorso(Map<String, LinkedList<Connessione>> rete,
-			Connessione target);
-
-	void memorizza(Map<String, LinkedList<Connessione>> rete, String nomeFile)
-			throws IOException;
 
 }// Rete
