@@ -120,7 +120,7 @@ public abstract class ListaAstratta<T> implements Lista<NominativoS> {
 	}// hashCode()
 
 	public String toString() {
-		StringBuffer sb = new StringBuffer(200);
+		StringBuilder sb = new StringBuilder(200);
 		sb.append('[');
 		Iterator<NominativoS> it = iterator();
 		while (it.hasNext()) {
