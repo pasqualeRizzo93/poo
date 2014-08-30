@@ -2,12 +2,12 @@ package poo.appello1;
 
 import java.util.*;
 
-public abstract class ReteAstratta<T> implements Rete<String> {
+public abstract class ReteAstratta<T,V> implements Rete<T,V> {
 
 	@Override
 	public int numNodi() {
 		int n = 0;
-		for (String u : this)
+		for (T u : this)
 			n++;
 		return n;
 	}// numNodi
@@ -15,8 +15,8 @@ public abstract class ReteAstratta<T> implements Rete<String> {
 	@Override
 	public int numConnessioni() {
 		int na = 0;
-		for (String u : this) {
-			Iterator<? extends Connessione> it = this.adiacenti(u);
+		for (T u : this) {
+			Iterator<? extends T> it = this.adiacenti(u);
 			while (it.hasNext()) {
 				it.next();
 				na++;
@@ -26,8 +26,8 @@ public abstract class ReteAstratta<T> implements Rete<String> {
 	}// numConnessioni
 
 	@Override
-	public boolean esisteNodo(String u) {
-		for (String v : this)
+	public boolean esisteNodo(T u) {
+		for (T v : this)
 			if (v.equals(u))
 				return true;
 		return false;
@@ -67,9 +67,9 @@ public abstract class ReteAstratta<T> implements Rete<String> {
 
 	@Override
 	public void rimuoviNodo(String u) {
-		Iterator<String> it = this.iterator();
+		Iterator<T> it = this.iterator();
 		while (it.hasNext()) {
-			String v = it.next();
+			T v = it.next();
 			if (v.equals(u)) {
 				it.remove();
 				break;
@@ -79,7 +79,7 @@ public abstract class ReteAstratta<T> implements Rete<String> {
 
 	@Override
 	public void rimuoviConnessione(Connessione c) {
-		String u = c.getOrigine();
+		T u = c.getOrigine();
 		if (esisteNodo(u)) {
 			Iterator<? extends Connessione> it = this.adiacenti(u);
 			while (it.hasNext()) {
@@ -102,7 +102,7 @@ public abstract class ReteAstratta<T> implements Rete<String> {
 	public int gradoEntrata(String u) {
 		int gE = 0;
 		if (esisteNodo(u)) {
-			for (String v : this) {
+			for (T v : this) {
 				Iterator<? extends Connessione> it = adiacenti(v);
 				while (it.hasNext()) {
 					Connessione c = it.next();

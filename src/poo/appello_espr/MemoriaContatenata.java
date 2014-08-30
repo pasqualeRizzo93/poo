@@ -2,7 +2,7 @@ package poo.appello_espr;
 
 import java.util.*;
 
-public class MemoriaContatenata<T> extends MemoriaAstratta<T> {
+public class MemoriaContatenata extends MemoriaAstratta {
 
 	private static class Nodo<E> {
 		E info;
@@ -62,11 +62,11 @@ public class MemoriaContatenata<T> extends MemoriaAstratta<T> {
 	}// remove
 
 	@Override
-	public Iterator<Variabile> iterator() {
+	public Iterator iterator() {
 		return new Iteratore();
 	}// iterator
 
-	private class Iteratore implements Iterator<Variabile> {
+	private class Iteratore implements Iterator {
 		private Nodo<Variabile> cor = null, pre = null;
 
 		public boolean hasNext() {

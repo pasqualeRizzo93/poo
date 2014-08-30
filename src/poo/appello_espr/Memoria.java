@@ -1,6 +1,6 @@
 package poo.appello_espr;
 
-public interface Memoria<T> extends Iterable<Variabile> {
+public interface Memoria extends Iterable {
 int size();
 void add(Variabile v);
 boolean contains(Variabile v);

@@ -7,4 +7,5 @@ public interface Numero extends Comparable<Numero>, Iterable<Cifra> {
 	boolean ePositivo();
 	boolean eNegativo();
 	void cambiaSegno();
+	void add(Cifra c);
 }

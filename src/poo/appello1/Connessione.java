@@ -1,20 +1,20 @@
 package poo.appello1;
 
-public class Connessione {// classe di oggetti immutabili
+public class Connessione<T> {// classe di oggetti immutabili
 
-	private String origine, destinazione, percorso;
+	private T origine, destinazione, percorso;
 
 	private int lunghezza;
 
-	public String getOrigine() {
+	public T getOrigine() {
 		return origine;
 	}
 
-	public String getDestinazione() {
+	public T getDestinazione() {
 		return destinazione;
 	}
 
-	public String getPercorso() {
+	public T getPercorso() {
 		return percorso;
 	}
 
@@ -22,7 +22,7 @@ public class Connessione {// classe di oggetti immutabili
 		return lunghezza;
 	}
 
-	public Connessione(String origine, String destinazione, String percorso,
+	public Connessione(T origine, T destinazione,T  percorso,
 			int lunghezza) {
 
 		this.origine = origine;

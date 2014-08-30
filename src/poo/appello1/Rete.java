@@ -2,34 +2,34 @@ package poo.appello1;
 
 import java.util.*;
 
-public interface Rete<String> extends Iterable<String> {
+public interface Rete<T,V> extends Iterable<T> {
 	int numNodi();
 
 	int numConnessioni();
 
 	boolean esisteNodo(String u);
 
-	boolean esisteConnessione(Connessione c);
+	boolean esisteConnessione(T c);
 
-	boolean esisteConnessione(String u, String v, String z, int l);
+	boolean esisteConnessione(V u, V v, V z, int l);
 
-	void insNodo(String u);
+	void insNodo(V u);
 
-	void insConnessione(Connessione c);
+	void insConnessione(T c);
 
-	void insConnessione(String u, String v, String z, int l);
+	void insConnessione(V u, V v, V z, int l);
 
 	void rimuoviNodo(String u);
 
-	void rimuoviConnessione(Connessione c);
+	void rimuoviConnessione(T c);
 
-	void rimuoviConnessione(String u, String v, String z, int l);
+	void rimuoviConnessione(V u, V v, V z, int l);
 
-	int gradoEntrata(String u);
+	int gradoEntrata(V u);
 
-	int gradoUscita(String u);
+	int gradoUscita(V u);
 
-	Iterator<? extends Connessione> adiacenti(String u);
+	Iterator<? extends T> adiacenti(T u);
 
 	void clear();
 

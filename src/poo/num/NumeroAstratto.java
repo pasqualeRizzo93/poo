@@ -4,11 +4,69 @@ import java.util.Iterator;
 
 public abstract class NumeroAstratto implements Numero {
 
+	protected abstract Numero create();
+	
 	@Override
-	public abstract Numero somma(Numero n);
+	public Numero somma(Numero n){
+		Numero s=create();
+		int somma;
+		int riporto=0;
+		Iterator<Cifra> it1=this.iterator();
+		Iterator<Cifra> it2=n.iterator();
+		while(it1.hasNext() && it2.hasNext()){
+			Cifra c1=it1.next(),c2=it2.next();
+			somma=c1.getCifra()+c2.getCifra()+riporto;
+			if(somma<=9){
+				s.add(new Cifra(somma));				
+			}else{
+				riporto=somma/10;
+				somma%=10;
+				s.add(new Cifra(somma));
+			}
+				if(!it1.hasNext()){
+					while(it2.hasNext());
+					s.add(it2.next());
+				}else if(!it2.hasNext()){
+					while(it1.hasNext()){
+						s.add(it1.next());
+					}
+				}
+				
+		}//primissimo_while
+		
+		return s;
+	}
 
 	@Override
-	public abstract Numero moltiplica(Numero n);
+	public Numero moltiplica(Numero n){
+		Numero s=null;
+		int prodotto;
+		int riporto=0;
+		Iterator<Cifra> it1=this.iterator();
+		Iterator<Cifra> it2=n.iterator();
+		while(it1.hasNext() && it2.hasNext()){
+			Cifra c1=it1.next(),c2=it2.next();
+			prodotto=c1.getCifra()*c2.getCifra()+riporto;
+			if(prodotto<=9){
+				s.add(new Cifra(prodotto));				
+			}else{
+				riporto=prodotto/10;
+				prodotto%=10;
+				s.add(new Cifra(prodotto));
+			}
+				if(!it1.hasNext()){
+					while(it2.hasNext());
+					s.add(it2.next());
+				}else if(!it2.hasNext()){
+					while(it1.hasNext()){
+						s.add(it1.next());
+					}
+				}
+				
+		}//primissimo_while
+		
+		return s;
+	}
 
 	@Override
 	public boolean ePositivo() {
@@ -34,6 +92,8 @@ public abstract class NumeroAstratto implements Numero {
 
 	@Override
 	public abstract void cambiaSegno();
+	
+	public abstract void add(Cifra c) ;
 	
 	@Override
 	public int compareTo(Numero n) {
@@ -67,12 +127,11 @@ public abstract class NumeroAstratto implements Numero {
 	
 	public String toString() {
 		StringBuilder sb = new StringBuilder(200);
-		sb.append(']');
 		Iterator<Cifra> it = this.iterator();
 		while (it.hasNext()) {
 			sb.append(it.next());
 		}// while
-		sb.append('[');
 		return sb.reverse().toString();
 	}// toString
+	
 }//NumeroAstratto
