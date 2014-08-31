@@ -5,8 +5,13 @@ import java.io.*;
 
 public class Applicazione {
 	public static void main(String[] args) throws IOException {
+		Numero u= new NumeroLista();
+		u.add(new Cifra(2));
+		u.add(new Cifra(3));
+		u.add(new Cifra(1));
+		System.out.println(u);
 		String linea = null;
-		Numero somma=new NumeroLista();
+		Numero s=new NumeroLista();
 		BufferedReader br = new BufferedReader(new FileReader(
 				"/home/pasquale/workspace/poo/numero.txt"));
 		Scanner sc = new Scanner(System.in);
@@ -35,14 +40,14 @@ public class Applicazione {
 		if (okLettura) {
 			Iterator<Numero> it = memoria.iterator();
 			while (it.hasNext()) {
-				somma=somma.somma(it.next());
+				s=s.somma(it.next());
 
 			}
 		} else {
 			throw new IOException();
 
 		}
-		System.out.println(somma);
+		System.out.println(s);
 
 	}
 

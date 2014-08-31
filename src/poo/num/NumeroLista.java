@@ -2,7 +2,6 @@ package poo.num;
 
 import java.util.*;
 
-
 public class NumeroLista extends NumeroAstratto {
 
 	private class Nodo<E>{
@@ -36,17 +35,12 @@ public class NumeroLista extends NumeroAstratto {
 
 	@Override
 	public void add(Cifra d) {
-		Nodo<Cifra> nuovo = new Nodo<Cifra>();
-		nuovo.info = d;
-
-		if (testa == null) {
-			nuovo.next = testa;
-				coda = nuovo;
-			testa = nuovo;
-		}else{
-			nuovo.next = null;
-			coda.next = nuovo;
-			coda = nuovo;}
+		Nodo<Cifra> nuovo=new Nodo<Cifra>();
+		nuovo.info=d;
+		nuovo.next=null;
+		if( coda==null ) testa=nuovo;
+		else coda.next=nuovo;
+		coda=nuovo;
 	}//add
 
 
