@@ -5,11 +5,6 @@ import java.io.*;
 
 public class Applicazione {
 	public static void main(String[] args) throws IOException {
-		Numero u= new NumeroLista();
-		u.add(new Cifra(2));
-		u.add(new Cifra(3));
-		u.add(new Cifra(1));
-		System.out.println(u);
 		String linea = null;
 		Numero s=new NumeroLista();
 		BufferedReader br = new BufferedReader(new FileReader(

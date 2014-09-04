@@ -2,7 +2,7 @@ package poo.appello_espr;
 
 import java.util.*;
 
-public class MemoriaContatenata extends MemoriaAstratta {
+public class MemoriaConcatenata extends MemoriaAstratta {
 
 	private static class Nodo<E> {
 		E info;
