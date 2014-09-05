@@ -13,7 +13,10 @@ public class Applicazione {
 			String comando=sc.next();
 			StringTokenizer stc= new StringTokenizer(comando,"=");
 		if(comando.equalsIgnoreCase("LOAD")){
-			BufferedReader br= new BufferedReader(new FileReader("/home/pasquale/workspace/poo/memoria.txt"));
+			System.out.println("inizio il caricamento delle varibili da file");
+//			BufferedReader br= new BufferedReader(new FileReader("/home/pasquale/workspace/poo/memoria.txt"));
+			// Basta mattere soltanto il nome del file ( Path relativo) semplicemente perché il file che vuoi caricare si trova nella stessa cartella del progetto.
+			BufferedReader br= new BufferedReader(new FileReader("memoria.txt"));
 			String linea=null;
 			while((linea=br.readLine()) != null){
 				StringTokenizer st= new StringTokenizer(linea,"=");
@@ -21,47 +24,72 @@ public class Applicazione {
 				int valore= Integer.parseInt(st.nextToken());
 				Variabile v=new Variabile(variabile,valore);
 				lista.add(v);
-				System.out.println(v);
+				System.out.println("Caricata : "+v);
 			}
+			System.out.println("caricamento varibili concluso con successo");
 		}else if(comando.equalsIgnoreCase("SAVE")){
-			PrintWriter pw=new PrintWriter(new FileWriter("/home/pasquale/workspace/poo/memoria.txt"));
+//			PrintWriter pw=new PrintWriter(new FileWriter("/home/pasquale/workspace/poo/memoria.txt"));
+			// Basta mattere soltanto il nome del file ( Path relativo) semplicemente perché il file che vuoi caricare si trova nella stessa cartella del progetto.
+			PrintWriter pw=new PrintWriter(new FileWriter("memoria.txt"));
 			for(Object o: lista){
 				Variabile v=(Variabile) o;
 				pw.println(v);
 			}
 			pw.close();
 			
-		}else if(comando=="."){
-			System.exit(-1);
-		}
-		else{
+		}else if(comando.equalsIgnoreCase("EXIT")){
+			System.out.println("bye");
+			System.exit(0);
+		}else{
 			String nome_variabile=stc.nextToken();
 			String espressione=stc.nextToken();
-			int x=0;
-			int y=0;
-			for(int i=0;i<espressione.length();i++){
-				Character c=espressione.charAt(i);
-				if(c!='+' || c!='-' || c!='/' || c!='*' || c!= '%'){
-					 y=Character.getNumericValue(c);
-				}else if(c=='+'){
-					x+=y;
-				}else if(c=='-'){
-					 x-=y;
-				}else if(c=='/'){
-					 x/=y;
-				}else if(c=='*'){
-			         x*=y;
-				}else if(c=='%'){
-					 x%=y;
-				}
-				
-			}
-			Variabile v=new Variabile(nome_variabile,x);
-			System.out.println(v);
+			Variabile v=new Variabile(nome_variabile,valutaEspressione(espressione));
+			System.out.println("salvata la variabile" + v);
 		}
 			
 		}
 
+	}
+	
+	/**
+	 * 
+	 * ATTENZIONE DA COMPLETARE !
+	 * 
+	 * Ho impostato il ragionamento, ma ho lasciato volontariamente incompleto il metodo.
+	 * Per esercizio prova anzitutto a capire quali casi non riesce a gestire e seguendo il ragionamento 
+	 * prova a completare il lavoro. Un piccolo suggerimento: se usi la ricorsione bene puoi risolvere tutto velocemente.
+	 * 
+	 * @param exp l'espressione che deve essere valutata 
+	 * @return il risultato dell'espressione.
+	 * @throws IllegalArgumentException quando non e' possibile calcolare l'espressione che viene passata come argomento per le seguenti ragioni <br />
+	 * <ul>
+	 * 	<li> Utilizza una variabile non definita in precedenza </li>
+	 * 	<li> Si sta cercando di fare una divisione per zero</li>
+	 * </ul>
+	 */
+	private static int valutaEspressione ( String exp ) throws IllegalArgumentException{
+		int result = 0;
+		int i = 0;
+		  if(exp.contains("+"))
+		  {
+			i = exp.indexOf("+");
+		    result=Integer.parseInt(exp.substring(0, i))+Integer.parseInt(exp.substring(i+1, exp.length()));
+		  } else if(exp.contains("-"))
+		  {
+			i = exp.indexOf("-");
+		    result=Integer.parseInt(exp.substring(0, i))-Integer.parseInt(exp.substring(i+1, exp.length()));
+		  } else if(exp.contains("/"))
+		  {
+			  i = exp.indexOf("/");
+		    result=Integer.parseInt(exp.substring(0, i))/Integer.parseInt(exp.substring(i+1, exp.length()));
+		  } else if(exp.contains("*"))
+		  {
+			  i = exp.indexOf("*");
+		    result=Integer.parseInt(exp.substring(0, i))*Integer.parseInt(exp.substring(i+1, exp.length()));
+		  } else{
+			  result = Integer.parseInt(exp);
+		  }
+		return result;
 	}
 
 }
