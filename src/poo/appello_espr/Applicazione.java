@@ -14,8 +14,6 @@ public class Applicazione {
 			StringTokenizer stc= new StringTokenizer(comando,"=");
 		if(comando.equalsIgnoreCase("LOAD")){
 			System.out.println("inizio il caricamento delle varibili da file");
-//			BufferedReader br= new BufferedReader(new FileReader("/home/pasquale/workspace/poo/memoria.txt"));
-			// Basta mattere soltanto il nome del file ( Path relativo) semplicemente perché il file che vuoi caricare si trova nella stessa cartella del progetto.
 			BufferedReader br= new BufferedReader(new FileReader("memoria.txt"));
 			String linea=null;
 			while((linea=br.readLine()) != null){
@@ -28,8 +26,6 @@ public class Applicazione {
 			}
 			System.out.println("caricamento varibili concluso con successo");
 		}else if(comando.equalsIgnoreCase("SAVE")){
-//			PrintWriter pw=new PrintWriter(new FileWriter("/home/pasquale/workspace/poo/memoria.txt"));
-			// Basta mattere soltanto il nome del file ( Path relativo) semplicemente perché il file che vuoi caricare si trova nella stessa cartella del progetto.
 			PrintWriter pw=new PrintWriter(new FileWriter("memoria.txt"));
 			for(Object o: lista){
 				Variabile v=(Variabile) o;
@@ -44,7 +40,8 @@ public class Applicazione {
 			String nome_variabile=stc.nextToken();
 			String espressione=stc.nextToken();
 			Variabile v=new Variabile(nome_variabile,valutaEspressione(espressione));
-			System.out.println("salvata la variabile" + v);
+			lista.add(v);
+			System.out.println("salvata la variabile: " + v);
 		}
 			
 		}
@@ -72,20 +69,20 @@ public class Applicazione {
 		int i = 0;
 		  if(exp.contains("+"))
 		  {
-			i = exp.indexOf("+");
-		    result=Integer.parseInt(exp.substring(0, i))+Integer.parseInt(exp.substring(i+1, exp.length()));
+			i = exp.lastIndexOf("+");
+			result=valutaEspressione(exp.substring(0, i))+Integer.parseInt(exp.substring(i+1, exp.length()));
 		  } else if(exp.contains("-"))
 		  {
-			i = exp.indexOf("-");
-		    result=Integer.parseInt(exp.substring(0, i))-Integer.parseInt(exp.substring(i+1, exp.length()));
+			i = exp.lastIndexOf("-");
+		    result=valutaEspressione(exp.substring(0, i))-Integer.parseInt(exp.substring(i+1, exp.length()));
 		  } else if(exp.contains("/"))
 		  {
-			  i = exp.indexOf("/");
-		    result=Integer.parseInt(exp.substring(0, i))/Integer.parseInt(exp.substring(i+1, exp.length()));
+			  i = exp.lastIndexOf("/");
+		    result=valutaEspressione(exp.substring(0, i))/Integer.parseInt(exp.substring(i+1, exp.length()));
 		  } else if(exp.contains("*"))
 		  {
-			  i = exp.indexOf("*");
-		    result=Integer.parseInt(exp.substring(0, i))*Integer.parseInt(exp.substring(i+1, exp.length()));
+			  i = exp.lastIndexOf("*");
+		    result=valutaEspressione(exp.substring(0, i))*Integer.parseInt(exp.substring(i+1, exp.length()));
 		  } else{
 			  result = Integer.parseInt(exp);
 		  }
