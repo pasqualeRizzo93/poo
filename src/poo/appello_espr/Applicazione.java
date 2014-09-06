@@ -78,6 +78,7 @@ public class Applicazione {
 		  } else if(exp.contains("/"))
 		  {
 			  i = exp.lastIndexOf("/");
+			  if(exp.substring(i+1, exp.length()).contains("0")) throw new IllegalArgumentException("non si puo dividere per 0!");
 		    result=valutaEspressione(exp.substring(0, i))/valutaEspressione(exp.substring(i+1, exp.length()));
 		  } else if(exp.contains("*"))
 		  {
