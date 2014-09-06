@@ -70,19 +70,19 @@ public class Applicazione {
 		  if(exp.contains("+"))
 		  {
 			i = exp.lastIndexOf("+");
-			result=valutaEspressione(exp.substring(0, i))+Integer.parseInt(exp.substring(i+1, exp.length()));
+			result=valutaEspressione(exp.substring(0, i))+valutaEspressione(exp.substring(i+1, exp.length()));
 		  } else if(exp.contains("-"))
 		  {
 			i = exp.lastIndexOf("-");
-		    result=valutaEspressione(exp.substring(0, i))-Integer.parseInt(exp.substring(i+1, exp.length()));
+		    result=valutaEspressione(exp.substring(0, i))-valutaEspressione(exp.substring(i+1, exp.length()));
 		  } else if(exp.contains("/"))
 		  {
 			  i = exp.lastIndexOf("/");
-		    result=valutaEspressione(exp.substring(0, i))/Integer.parseInt(exp.substring(i+1, exp.length()));
+		    result=valutaEspressione(exp.substring(0, i))/valutaEspressione(exp.substring(i+1, exp.length()));
 		  } else if(exp.contains("*"))
 		  {
 			  i = exp.lastIndexOf("*");
-		    result=valutaEspressione(exp.substring(0, i))*Integer.parseInt(exp.substring(i+1, exp.length()));
+		    result=valutaEspressione(exp.substring(0, i))*valutaEspressione(exp.substring(i+1, exp.length()));
 		  } else{
 			  result = Integer.parseInt(exp);
 		  }
